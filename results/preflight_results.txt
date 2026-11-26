@@ -1,0 +1,15 @@
+PASS  GPU: NVIDIA A100-SXM4-80GB, 81920 MiB, 595.71.05, 8.0
+PASS  PanopticSports/basketball: 150 frames, 27 train cams, 4 test cams, image 640 x 360
+PASS  PanopticSports/boxes: 150 frames, 27 train cams, 4 test cams, image 640 x 360
+PASS  PanopticSports/football: 150 frames, 27 train cams, 4 test cams, image 640 x 360
+PASS  PanopticSports/juggle: 150 frames, 27 train cams, 4 test cams, image 640 x 360
+PASS  PanopticSports/softball: 150 frames, 27 train cams, 4 test cams, image 640 x 360
+PASS  PanopticSports/tennis: 150 frames, 27 train cams, 4 test cams, image 640 x 360
+PASS  3D skeletons: 8860 HD frames with pose files; people per frame (sampled) min 0 max 2
+PASS  calibration json
+PASS  4 HD videos downloaded
+FAIL  rasterizer build -- check that nvcc's CUDA version matches torch.version.cuda (module load cuda/12.1 on a cluster)
+MATCH  raw hd_00_00 <-> clean cam 0: clip starts at raw HD frame 4061 (first-frame NCC 0.81, last-frame NCC 0.88)  -> skeletons: body3DScene_00004061.json ... 00004210
+weak  raw hd_00_01 <-> clean cam 1: clip starts at raw HD frame 2005 (first-frame NCC 0.78, last-frame NCC 0.70)  -> skeletons: body3DScene_00002005.json ... 00002154
+weak  raw hd_00_02 <-> clean cam 2: clip starts at raw HD frame 4061 (first-frame NCC 0.64, last-frame NCC 0.62)  -> skeletons: body3DScene_00004061.json ... 00004210
+weak  raw hd_00_03 <-> clean cam 3: clip starts at raw HD frame 3865 (first-frame NCC 0.83, last-frame NCC 0.37)  -> skeletons: body3DScene_00003865.json ... 00004014

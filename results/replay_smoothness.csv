@@ -1,0 +1,9 @@
+video,jerk_median,jerk_p95,jerk_max,note
+naive_orbit_basketball,0.704,5.06,9.81,virtual camera blends the real camera poses
+director_v1_basketball,0.012,0.070,0.964,first director version (too close to players)
+director_v6_basketball,0.020,0.079,0.237,
+director_v6_boxes,0.005,0.021,0.035,
+director_v6_football,0.008,0.047,0.178,
+director_v6_juggle,0.013,0.060,0.261,
+director_v6_softball,0.015,0.051,0.107,
+director_v6_tennis,0.015,0.081,0.411,

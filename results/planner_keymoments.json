@@ -1,0 +1,146 @@
+{
+ "basketball": {
+  "freeze": 59.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 116.3,
+  "n_frames": 523,
+  "seconds": 17.433333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 0.9477079934203103,
+  "fov_min": 46.86995501057166,
+  "fov_max": 64.00000000000003,
+  "ball_found": true,
+  "player_pts_kept": "11610/12272",
+  "rf_range": [
+   0.803908254067085,
+   0.9
+  ],
+  "height_frac_range": [
+   0.37717990288539055,
+   0.6164152237987176
+  ],
+  "frames_pushed": 75,
+  "frames_raised": 43
+ },
+ "boxes": {
+  "freeze": 75.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 76.0,
+  "n_frames": 533,
+  "seconds": 17.766666666666666,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.9473777515525392,
+  "fov_min": 49.772333615003205,
+  "fov_max": 64.00000000000003,
+  "ball_found": true,
+  "player_pts_kept": "8651/8849",
+  "rf_range": [
+   0.8023032947049544,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3578781627147595,
+   0.6154031930420591
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0
+ },
+ "football": {
+  "freeze": 75.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 12.0,
+  "n_frames": 533,
+  "seconds": 17.766666666666666,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 0.9709620763689599,
+  "fov_min": 46.048829578601804,
+  "fov_max": 64.00000000000003,
+  "ball_found": true,
+  "player_pts_kept": "9646/10153",
+  "rf_range": [
+   0.8042595377453269,
+   0.9
+  ],
+  "height_frac_range": [
+   0.37957595513796066,
+   0.6577707021958936
+  ],
+  "frames_pushed": 58,
+  "frames_raised": 33
+ },
+ "juggle": {
+  "freeze": 50.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": -7.3,
+  "n_frames": 523,
+  "seconds": 17.433333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.7436617373441587,
+  "fov_min": 51.76573173442661,
+  "fov_max": 64.00000000000003,
+  "ball_found": true,
+  "player_pts_kept": "8505/8604",
+  "rf_range": [
+   0.8017532424447271,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3562849807172493,
+   0.6170228846988066
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0
+ },
+ "softball": {
+  "freeze": 81.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 108.4,
+  "n_frames": 537,
+  "seconds": 17.9,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.6547956608715093,
+  "fov_min": 56.0389744787352,
+  "fov_max": 64.00000000000003,
+  "ball_found": true,
+  "player_pts_kept": "8333/8380",
+  "rf_range": [
+   0.8024833271580056,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3583855238897578,
+   0.6149987687179983
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0
+ },
+ "tennis": {
+  "freeze": 49.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 106.1,
+  "n_frames": 522,
+  "seconds": 17.4,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.5545972136006436,
+  "fov_min": 52.7084329921054,
+  "fov_max": 64.00000000000003,
+  "ball_found": true,
+  "player_pts_kept": "7949/8020",
+  "rf_range": [
+   0.8017425907747568,
+   0.9
+  ],
+  "height_frac_range": [
+   0.35625378897988585,
+   0.617072335532974
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0
+ }
+}

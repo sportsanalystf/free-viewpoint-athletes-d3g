@@ -1,0 +1,17 @@
+{
+ "seq": "basketball",
+ "cams": 4,
+ "init": "allcam",
+ "seed": 0,
+ "exp": "n04_allcam",
+ "frames": 0,
+ "iters0": 10000,
+ "iters": 2000,
+ "train_cams": [
+  3,
+  12,
+  23,
+  26
+ ],
+ "n_train_cams": 4
+}

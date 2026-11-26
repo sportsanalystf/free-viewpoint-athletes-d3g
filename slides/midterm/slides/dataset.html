@@ -1,0 +1,29 @@
+<section id="dataset" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B4530F">Dataset</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">PanopticSports: athletes inside a camera dome</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="/_blob/0792ba5879b9b9072946ea910ff63207" alt="A real camera view of the basketball clip inside the Panoptic dome" style="width:760px;height:400px;object-fit:cover;border-radius:16px">
+<p style="font-size:24px;color:#4A5260">A real view from one held-out camera (basketball)</p>
+</div>
+<ul style="flex:1;font-size:28px;line-height:1.4;color:#4A5260;display:flex;flex-direction:column;gap:14px">
+<li>Cut from the <b>CMU Panoptic Studio</b>, a dome lined with cameras (capture 161029_sports1)</li>
+<li>Released with Dynamic 3D Gaussians (3DV 2024)</li>
+<li><b>6 clips × 150 frames</b>, one or two people each</li>
+<li><b>31 synced HD cameras</b>, resized to 640×360: 27 to train, 4 held out to test</li>
+<li>Each image has its <b>calibration</b> and a <b>foreground mask</b>; each clip has a starting point cloud</li>
+<li>The raw capture also has <b>3D skeletons</b></li>
+</ul>
+</div>
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<p style="font-size:24px;background:#14181F;color:#F4F2EC;padding:10px 20px;border-radius:24px">basketball · passing</p>
+<p style="font-size:24px;background:#14181F;color:#F4F2EC;padding:10px 20px;border-radius:24px">boxes · stacking</p>
+<p style="font-size:24px;background:#14181F;color:#F4F2EC;padding:10px 20px;border-radius:24px">football · throwing</p>
+<p style="font-size:24px;background:#14181F;color:#F4F2EC;padding:10px 20px;border-radius:24px">juggle · small balls</p>
+<p style="font-size:24px;background:#14181F;color:#F4F2EC;padding:10px 20px;border-radius:24px">softball · bat swing</p>
+<p style="font-size:24px;background:#14181F;color:#F4F2EC;padding:10px 20px;border-radius:24px">tennis · racket swing</p>
+</div>
+<aside>Our data is PanopticSports. It comes from the CMU Panoptic Studio, a dome lined with cameras, and was released together with Dynamic 3D Gaussians. There are six short clips, 150 frames each, of one or two people doing a sports movement: passing a basketball, stacking boxes, throwing a football, juggling, swinging a softball bat and swinging a tennis racket. Each frame is seen by 31 synchronized HD cameras. 27 are for training and 4 are held out so we can grade the result. Every image comes with its calibration and a foreground mask, and the raw capture also has 3D skeletons, which I aligned to the clips.</aside>
+</section>

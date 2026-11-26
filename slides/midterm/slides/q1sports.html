@@ -1,0 +1,25 @@
+<section id="q1sports" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B4530F">Q1 · held-out quality, all six sports</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">27–29 dB on cameras the model never saw</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="/_blob/c7f18ae9f141a410554f69cc7449fa9c" alt="Real versus rendered held-out view at frame 75 for all six sports" style="width:960px;height:405px;object-fit:contain;border-radius:12px;background:#14181F">
+<img src="/_blob/dd4f9b41ac7dbd548c3ee7153b4b5b81" alt="Held-out PSNR per frame for the six sports" style="width:960px;height:240px;object-fit:contain;background:#FFFFFF;border-radius:12px">
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<table style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;color:#1B2029">
+<tr style="background:#14181F"><th style="width:40%;color:#F4F2EC">Clip</th><th style="width:30%;color:#F4F2EC;text-align:right">PSNR</th><th style="width:30%;color:#F4F2EC;text-align:right">SSIM</th></tr>
+<tr style="background:#EFD9C6"><td>basketball (ours)</td><td style="text-align:right">27.03</td><td style="text-align:right">0.891</td></tr>
+<tr style="background:#FBFAF6"><td>boxes</td><td style="text-align:right">29.01</td><td style="text-align:right">0.899</td></tr>
+<tr style="background:#F4F2EC"><td>football</td><td style="text-align:right">29.03</td><td style="text-align:right">0.903</td></tr>
+<tr style="background:#FBFAF6"><td>juggle</td><td style="text-align:right">29.28</td><td style="text-align:right">0.908</td></tr>
+<tr style="background:#F4F2EC"><td>softball</td><td style="text-align:right">28.78</td><td style="text-align:right">0.904</td></tr>
+<tr style="background:#FBFAF6"><td>tennis</td><td style="text-align:right">28.60</td><td style="text-align:right">0.904</td></tr>
+</table>
+<p style="font-size:24px;line-height:1.4;color:#4A5260">PSNR drops 0.6–1.4 dB early, then holds steady (under 0.2 dB spread after frame 60), so errors don’t pile up. Our basketball run is 1.6–2.3 dB below the released models; scoring the released basketball model next will show why.</p>
+</div>
+</div>
+<aside>Here’s Q1 for all six sports, scored on the four held-out cameras over all 150 frames. Every clip lands between 27 and 29 dB, with SSIM around 0.9. On the left, real versus rendered views look very close. The per-frame plot shows PSNR dips a little in the first frames and then stays flat, so tracking errors don’t keep growing. My own basketball run is about 2 dB below the released models on the other clips. I haven’t scored the released basketball model yet, so I can’t yet tell whether that’s my training or the clip itself.</aside>
+</section>

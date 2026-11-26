@@ -1,0 +1,8 @@
+<section id="workflow" data-transition="fade" style="background:#FBFAF6;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B4530F">Method overview</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">The workflow, from synced video to replay</h2>
+</div>
+<img src="/_blob/6c7c9c5295e0f155b5284385c168272a" alt="Workflow diagram: input video, A prepare the data (steps 1-4), B build the 4D model with D3G (steps 5-7), C measure it (step 8), D direct the replay (steps 9-13), output replay video" style="width:1664px;height:625px;object-fit:contain">
+<aside>Here is the whole workflow on one slide. On the left, the synchronized video. Stage A prepares the data: frames and calibration, masks, a split into training and held-out cameras, and a starting point cloud. Stage B builds the 4D model with Dynamic 3D Gaussians: fit the first frame, then track every later frame with physical priors. Stage C measures it on cameras it never saw. Stage D is the director: it works out the scene’s layout from the camera rig, finds the players and the key moment, plans the shot, keeps the camera clear, and renders slow motion. The numbers match the next slides, where I show the output of each step.</aside>
+</section>

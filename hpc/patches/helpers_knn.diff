@@ -1,0 +1,27 @@
+diff --git a/helpers.py b/helpers.py
+index f11a2ae..94fb203 100644
+--- a/helpers.py
++++ b/helpers.py
+@@ -70,16 +70,12 @@ def quat_mult(q1, q2):
+ 
+ 
+ def o3d_knn(pts, num_knn):
+-    indices = []
+-    sq_dists = []
+-    pcd = o3d.geometry.PointCloud()
+-    pcd.points = o3d.utility.Vector3dVector(np.ascontiguousarray(pts, np.float64))
+-    pcd_tree = o3d.geometry.KDTreeFlann(pcd)
+-    for p in pcd.points:
+-        [_, i, d] = pcd_tree.search_knn_vector_3d(p, num_knn + 1)
+-        indices.append(i[1:])
+-        sq_dists.append(d[1:])
+-    return np.array(sq_dists), np.array(indices)
++    # SciPy KD-tree replacement (open3d 0.18 segfaults with NumPy 2.x). Same output:
++    # squared distances and indices of the num_knn nearest neighbours, excluding the point itself.
++    from scipy.spatial import cKDTree
++    pts = np.ascontiguousarray(pts, np.float64)
++    d, i = cKDTree(pts).query(pts, k=num_knn + 1)
++    return (d[:, 1:] ** 2).astype(np.float64), i[:, 1:].astype(np.int64)
+ 
+ 
+ def params2cpu(params, is_initial_timestep):

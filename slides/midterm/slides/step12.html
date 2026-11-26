@@ -1,0 +1,18 @@
+<section id="step12" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#3C8D5A">A · Prepare the data · steps 1–2</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">Frames, calibration and masks</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<div style="width:600px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#3C8D5A">WHAT IT DOES</p><p style="font-size:28px;line-height:1.35;color:#1B2029">Loads every frame with its camera intrinsics and pose, plus a mask of the athlete.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#3C8D5A">WHY</p><p style="font-size:28px;line-height:1.35;color:#1B2029">Rendering into a camera needs exact cameras. The mask teaches each Gaussian whether it is athlete or background.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#3C8D5A">WHAT WE GOT</p><p style="font-size:28px;line-height:1.35;color:#1B2029">31 calibrated views per frame and a clean athlete mask for each.</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/171d1cbd24b2be0f882edecc1aa8ff6a" alt="Image, foreground mask and overlay for three cameras" style="width:1016px;height:572px;object-fit:contain;border-radius:16px;background:#FFFFFF">
+<p style="font-size:24px;color:#4A5260">Image, mask and overlay for three cameras</p>
+</div>
+</div>
+<aside>Step one and two. We load every frame with its camera’s intrinsics and pose; rendering a Gaussian into a camera only works if these are exact. We also load a foreground mask per image. D3G uses the mask to give each Gaussian an athlete-or-background label, and later the director uses that label to find the players.</aside>
+</section>

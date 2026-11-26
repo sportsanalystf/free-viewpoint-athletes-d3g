@@ -1,0 +1,21 @@
+<section id="why" data-transition="fade" style="background:#14181F;color:#F4F2EC;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F28C28">Intuition</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#F4F2EC">Why this design should work</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1F2530;padding:40px;border-radius:16px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:500;color:#F28C28">Gaussians that persist</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFC5CE">Each Gaussian keeps its identity through the clip. That gives a 3D track for every point (to find the motion) and lets us render between frames (for slow motion).</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1F2530;padding:40px;border-radius:16px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:500;color:#F28C28">Same recipe as industry</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFC5CE">Arcturus describes synced capture, a radiance field per moment, render anywhere. A careful open version should get close in a controlled dome.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1F2530;padding:40px;border-radius:16px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:500;color:#F28C28">Plan in the scene</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFC5CE">Blending real camera poses copies the rig’s uneven spacing. Planning around the players gives a smooth path wherever the cameras are.</p>
+</div>
+</div>
+<aside>Why should this work? First, Dynamic 3D Gaussians keeps each Gaussian’s identity through the whole clip. That gives a 3D track for every point, which the director uses to find motion, and it lets us render between frames for slow motion. Second, it’s the same recipe Arcturus describes publicly, so an open version done carefully should get close in a controlled dome. Third, where we expect to beat the simple baseline is the camera move: blending real camera poses copies the rig’s uneven spacing, while planning around the players gives a smooth path no matter where the cameras are.</aside>
+</section>

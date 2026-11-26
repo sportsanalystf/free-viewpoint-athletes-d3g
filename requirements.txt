@@ -1,0 +1,9 @@
+# Python packages our scripts import (the cluster env "d3g" also needs Dynamic3DGaussians' own requirements
+# and the diff-gaussian-rasterization-w-depth CUDA extension; see docs/hpc.md)
+torch>=2.1
+numpy
+scipy
+pillow
+matplotlib
+opencv-python
+imageio-ffmpeg

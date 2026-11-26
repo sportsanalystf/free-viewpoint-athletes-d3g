@@ -1,0 +1,17 @@
+<section id="step34" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#3C8D5A">A · Prepare the data · steps 3–4</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">Split the cameras, seed the points</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<img src="/_blob/3e98568ee249e230c8e90211359f859f" alt="The 4 held-out test camera views of the basketball clip, outlined in red" style="width:816px;height:420px;object-fit:contain;border-radius:16px;background:#14181F">
+<p style="font-size:24px;line-height:1.35;color:#1B2029"><b>3 · Train / test split.</b> 27 cameras train the model. These 4 are held out and only used to grade it, so we can check views the model has never seen.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<img src="/_blob/c81c2f1fcb6dc11efacd024249d2064d" alt="The starting point cloud of the basketball scene, 194k coloured points" style="width:816px;height:420px;object-fit:contain;border-radius:16px;background:#FFFFFF">
+<p style="font-size:24px;line-height:1.35;color:#1B2029"><b>4 · Starting point cloud.</b> Gaussians need somewhere to start. Each one begins at a point of the 194k-point cloud, with its colour and an athlete-or-background label.</p>
+</div>
+</div>
+<aside>Step three splits the cameras. 27 train the model, and these 4 are held out: the model never sees them during training, so they’re a fair test of whether new views are right. Step four is the starting point cloud. Gaussians need somewhere to start, so each one begins at a point of this 194-thousand-point cloud, with its colour and a label saying whether it belongs to an athlete or the background.</aside>
+</section>

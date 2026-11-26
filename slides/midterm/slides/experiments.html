@@ -1,0 +1,14 @@
+<section id="experiments" data-transition="fade" style="background:#14181F;color:#F4F2EC;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F28C28">Experiments</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#F4F2EC">Four questions we tested</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#1F2530;padding:32px;border-radius:16px"><p style="font-size:24px;font-weight:600;color:#F28C28">Q1 · IS IT RIGHT?</p><p style="font-size:32px;line-height:1.35;color:#F4F2EC">Does the 4D model match real views it never saw?</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#1F2530;padding:32px;border-radius:16px"><p style="font-size:24px;font-weight:600;color:#F28C28">Q2 · OVER TIME</p><p style="font-size:32px;line-height:1.35;color:#F4F2EC">Does it stay stable across all 150 frames?</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#1F2530;padding:32px;border-radius:16px"><p style="font-size:24px;font-weight:600;color:#F28C28">Q3 · 3D MOTION</p><p style="font-size:32px;line-height:1.35;color:#F4F2EC">Does it capture how the athletes actually move?</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#1F2530;padding:32px;border-radius:16px"><p style="font-size:24px;font-weight:600;color:#F28C28">Q4 · THE REPLAY</p><p style="font-size:32px;line-height:1.35;color:#F4F2EC">Is it smooth and well framed across different sports?</p></div>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#BFC5CE">Testbed: UVA HPC GPUs (A100, A40, A6000, B200). Basketball model trained by us; the other five clips use the D3G authors’ released models. All scores on the 4 held-out cameras.</p>
+<aside>For experiments I asked four questions. Is the 4D model right, when checked against cameras it never saw? Does it stay stable over the whole clip? Does it capture how the athletes really move in 3D? And does the director give a smooth, well-framed replay across different sports? Everything runs on UVA’s HPC cluster. I trained the basketball model myself; for the other five sports I used the authors’ released models as input to my director.</aside>
+</section>

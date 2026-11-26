@@ -1,0 +1,18 @@
+<section id="step5" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#7A4FB0">B · Build the 4D model · step 5</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">Fit the first frame</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<div style="width:600px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#7A4FB0">WHAT IT DOES</p><p style="font-size:28px;line-height:1.35;color:#1B2029">Fits frame 0 like normal 3D Gaussian Splatting: 10k iterations, image loss plus mask loss. Gaussians are split, cloned and pruned as needed.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#7A4FB0">WHY</p><p style="font-size:28px;line-height:1.35;color:#1B2029">Every later frame starts from this one, so it sets the colours and shapes for the whole clip.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#7A4FB0">WHAT WE GOT</p><p style="font-size:28px;line-height:1.35;color:#1B2029">Before training it is a grey blur. After 500 iterations: 27.9 dB on a held-out camera. Gaussians grow 194k → about 365k.</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/9e84f06ea1893f625f3bed2b44d6b434" alt="Frame-0 training progress on a held-out camera: real image, start, 500, 1k, 3k and 10k iterations" style="width:1016px;height:572px;object-fit:contain;border-radius:16px;background:#14181F">
+<p style="font-size:24px;color:#4A5260">Held-out view during training: start → 500 → 1k → 3k → 10k iterations</p>
+</div>
+</div>
+<aside>Step five fits the first frame like normal Gaussian splatting: ten thousand iterations with an image loss and a mask loss, while Gaussians are split, cloned and pruned. Every later frame starts from this one, so it fixes the colours and shapes for the whole clip. The cloud grows from 194 thousand to about 365 thousand Gaussians, and the held-out view reaches about 29 dB. Notice the start: before any training the render is just a grey blur, and after only 500 iterations it is already at 27.9 dB.</aside>
+</section>

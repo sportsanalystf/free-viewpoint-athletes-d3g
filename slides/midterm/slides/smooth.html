@@ -1,0 +1,24 @@
+<section id="smooth" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B4530F">Q4 · replay smoothness, all six sports</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">Far smoother than blending real cameras</h2>
+</div>
+<div style="display:flex;gap:64px;align-items:start">
+<div style="width:520px;display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1.05;color:#B4530F">35×</p>
+<p style="font-size:32px;line-height:1.4;color:#1B2029">lower median jerk than a naive orbit that blends real camera poses (41× lower worst case), at about the same speed</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5260">Jerk = change in the video’s overall optical-flow motion per frame (px, 320 px wide). Lower is smoother.</p>
+</div>
+<table style="flex:1;font-family:'Public Sans', Arial, sans-serif;font-size:26px;color:#1B2029">
+<tr style="background:#14181F"><th style="width:28%;color:#F4F2EC">Clip</th><th style="width:36%;color:#F4F2EC">Movement</th><th style="width:12%;color:#F4F2EC;text-align:right">median</th><th style="width:12%;color:#F4F2EC;text-align:right">p95</th><th style="width:12%;color:#F4F2EC;text-align:right">max</th></tr>
+<tr style="background:#EFD9C6"><td>Naive orbit</td><td>basketball</td><td style="text-align:right">0.704</td><td style="text-align:right">5.06</td><td style="text-align:right">9.81</td></tr>
+<tr style="background:#FBFAF6"><td>basketball</td><td>pass</td><td style="text-align:right">0.020</td><td style="text-align:right">0.079</td><td style="text-align:right">0.237</td></tr>
+<tr style="background:#F4F2EC"><td>boxes</td><td>slow lifting</td><td style="text-align:right">0.005</td><td style="text-align:right">0.021</td><td style="text-align:right">0.035</td></tr>
+<tr style="background:#FBFAF6"><td>football</td><td>throw, catch</td><td style="text-align:right">0.008</td><td style="text-align:right">0.047</td><td style="text-align:right">0.178</td></tr>
+<tr style="background:#F4F2EC"><td>juggle</td><td>small, fast balls</td><td style="text-align:right">0.013</td><td style="text-align:right">0.060</td><td style="text-align:right">0.261</td></tr>
+<tr style="background:#FBFAF6"><td>softball</td><td>bat swing</td><td style="text-align:right">0.015</td><td style="text-align:right">0.051</td><td style="text-align:right">0.107</td></tr>
+<tr style="background:#F4F2EC"><td>tennis</td><td>racket swing</td><td style="text-align:right">0.015</td><td style="text-align:right">0.081</td><td style="text-align:right">0.411</td></tr>
+</table>
+</div>
+<aside>For Q4, I measure smoothness from the video alone, using optical flow between frames, and look at how suddenly the camera’s motion changes. Compared with a naive orbit that just blends the real camera poses at about the same speed, our replay is 35 times smoother on the median and 41 times on the worst frame. Across sports, the calmest is boxes, a slow movement. The hardest are tennis and juggling, where small, fast objects make the aim point move quickly.</aside>
+</section>

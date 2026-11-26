@@ -1,0 +1,4 @@
+# Upstream code used (commit hashes on UVA HPC, Nov 2026)
+Dynamic3DGaussians  7dbbd4dec404308524ff402756bdb8143a2589b0  https://github.com/JonathonLuiten/Dynamic3DGaussians
+diff-gaussian-rasterization-w-depth  cb65e4b86bc3bd8ed42174b72a62e8d3a3a71110  https://github.com/JonathonLuiten/diff-gaussian-rasterization-w-depth
+Only local change to D3G: hpc/patches/helpers_knn.diff (applied by hpc/patch_d3g_knn.py)

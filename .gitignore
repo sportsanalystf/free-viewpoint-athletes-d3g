@@ -1,0 +1,33 @@
+# Large or third-party files stay out of git
+data/*
+!data/README.md
+media/
+hpc_pull/
+MANIFEST.sha256
+*.npz
+*.mp4
+*.webm
+*.mov
+*.zip
+*.tar.gz
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# LaTeX build files (main.pdf is kept)
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

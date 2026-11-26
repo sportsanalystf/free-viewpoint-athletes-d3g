@@ -1,0 +1,18 @@
+<section id="step13" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C2571A">D · Direct the replay · step 13</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">Render slow motion between frames</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<div style="width:600px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#C2571A">WHAT IT DOES</p><p style="font-size:28px;line-height:1.35;color:#1B2029">For times between two frames, blends each Gaussian’s position and colour, and its rotation with a normalized quaternion blend.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#C2571A">WHY</p><p style="font-size:28px;line-height:1.35;color:#1B2029">At 0.4× speed, repeating frames looks choppy. Blending gives new in-between poses.</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#C2571A">WHAT WE GOT</p><p style="font-size:28px;line-height:1.35;color:#1B2029">A 17 s replay at 1280×720, 30 fps, with no repeated frames.</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/5918332423ff501c6f8f94d424bdd7fe" data-video="/_blob/e8d713851914adb28f69fdbd0c01b3df" alt="Final cinematic replay of the basketball clip: push-in, freeze-time sweep and crane" style="width:1016px;height:572px;object-fit:cover;border-radius:16px">
+<p style="font-size:24px;color:#4A5260">The final basketball replay (our 27-camera model)</p>
+</div>
+</div>
+<aside>The last step renders the video. Slow motion at 0.4 times speed needs frames that don’t exist, and repeating frames looks choppy. Because each Gaussian persists, we can blend its position, colour and rotation between two frames and render a real in-between pose. The result is a seventeen-second replay at 720p and 30 frames per second, with no repeated frames.</aside>
+</section>

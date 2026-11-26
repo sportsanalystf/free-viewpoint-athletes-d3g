@@ -1,0 +1,32 @@
+<section id="background" data-transition="fade" style="background:#F4F2EC;color:#1B2029;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#B4530F">Background, from class</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#14181F">From NeRF to Gaussians that move</h2>
+</div>
+<div style="display:flex;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FBFAF6;padding:32px;border:1px solid #DDD8CC;border-radius:16px">
+<p style="font-size:24px;font-weight:600;color:#5A606B">2020 · LECTURE 8</p>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:500;color:#14181F">NeRF</h3>
+<p style="font-size:28px;line-height:1.35;color:#4A5260">A scene stored in a neural network. Great images, slow to render.</p>
+</div>
+<x-connector head="end" style="width:56px;align-self:center;color:#8A8F98"></x-connector>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#FBFAF6;padding:32px;border:1px solid #DDD8CC;border-radius:16px">
+<p style="font-size:24px;font-weight:600;color:#5A606B">2023 · LECTURE 9</p>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:500;color:#14181F">3D Gaussian Splatting</h3>
+<p style="font-size:28px;line-height:1.35;color:#4A5260">Millions of small 3D blobs, rasterized in real time. Static scenes.</p>
+</div>
+<x-connector head="end" style="width:56px;align-self:center;color:#8A8F98"></x-connector>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#14181F;padding:32px;border-radius:16px">
+<p style="font-size:24px;font-weight:600;color:#F28C28">2024 · OUR BASE</p>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:500;color:#F4F2EC">Dynamic 3D Gaussians</h3>
+<p style="font-size:28px;line-height:1.35;color:#BFC5CE">The same blobs, moved frame by frame. Tracks every point in 3D.</p>
+</div>
+</div>
+<table style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;color:#1B2029">
+<tr style="background:#14181F"><th style="width:30%;color:#F4F2EC">Other class papers</th><th style="width:70%;color:#F4F2EC">How they relate</th></tr>
+<tr style="background:#FBFAF6"><td>D4RT, CoTracker3</td><td>Depth and motion from video; not aimed at photoreal new views</td></tr>
+<tr style="background:#F4F2EC"><td>VGGT, MapAnything</td><td>Cameras and geometry in one pass; could replace slow per-clip fitting</td></tr>
+<tr style="background:#FBFAF6"><td>RayZer, WildRayZer</td><td>View synthesis without 3D labels, including moving scenes</td></tr>
+</table>
+<aside>Some background from class. NeRF stores a scene in a network and renders beautiful images, but slowly. 3D Gaussian Splatting replaced the network with millions of small blobs that render in real time, but only for still scenes. Dynamic 3D Gaussians, from 3DV 2024, keeps the same blobs for the whole clip and moves them frame by frame, so it also tracks every point. That’s our base. Other papers we read connect too: D4RT and CoTracker3 recover motion, VGGT and MapAnything could give a starting point cloud from few cameras, and RayZer and WildRayZer learn view synthesis without 3D labels.</aside>
+</section>

@@ -1,0 +1,16 @@
+<section id="step8" data-transition="fade" style="background:#14181F;color:#F4F2EC;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C8CDD5">C · Measure it · step 8</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#F4F2EC">Grade it on cameras it never saw</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<img src="/_blob/559bd1e0d7ef71583a0a21ffcbd3c877" alt="Held-out camera at frame 75: real image, rendered colour, rendered depth, rendered athlete and background labels" style="width:1664px;height:234px;object-fit:contain;border-radius:12px">
+<p style="font-size:24px;color:#BFC5CE">Held-out camera, frame 75: real · rendered colour · rendered depth · athlete (red) vs background (blue)</p>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#F28C28">WHAT IT DOES</p><p style="font-size:28px;line-height:1.35;color:#BFC5CE">Renders the 4 held-out cameras every frame and compares with the real images (PSNR, SSIM).</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#F28C28">WHY</p><p style="font-size:28px;line-height:1.35;color:#BFC5CE">It’s the honest check that new views are right, not just training views.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><p style="font-size:24px;font-weight:600;color:#F28C28">WHAT WE GOT</p><p style="font-size:28px;line-height:1.35;color:#BFC5CE">Basketball: 27.0 dB, SSIM 0.891. The model also gives depth and athlete labels for free.</p></div>
+</div>
+<aside>Step eight is how we know it works. We render the four held-out cameras at every frame and compare with the real images. On the left is the real held-out view, next to it our render. Because the model is real 3D, we also get depth and the athlete-versus-background labels for free. For basketball the score is 27 dB and 0.89 SSIM over the whole clip; the next section shows all six sports.</aside>
+</section>
