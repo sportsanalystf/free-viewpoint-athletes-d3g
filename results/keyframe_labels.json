@@ -1,6 +1,6 @@
 {
   "_note": "Hand-labelled key moment per clip (frame index, 0-149), read from media/final/keyframes/sheet_<seq>.jpg (every 3rd frame, held-out camera 0), so labels are +-2 frames. Definition: the decisive instant of the action (release of a throw, contact of a swing, placing of a box). status: proposed -> confirmed once checked by Faizan.",
-  "status": "proposed",
+  "status": "confirmed",
   "labels": {
     "basketball": {"frame": 53, "event": "white player releases the pass (ball leaves the hands between frames 51 and 54)"},
     "boxes": {"frame": 63, "event": "box set down on the stack (arms lower onto the stack, frames 60-66); low confidence, the held-out view is from behind"},
