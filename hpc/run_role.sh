@@ -36,7 +36,7 @@ case "$role" in
   sheets)  python -X faulthandler contact_sheets.py ;;
   ablate)  python -X faulthandler ablate_director.py --exp ${1:-n27_allcam} ;;
   tracks)  python -X faulthandler eval_tracks.py --exps ${1:-n27_allcam} ${2:+--seqs $2} ;;
-  analysis) python -X faulthandler analysis.py --exp ${1:-n27_allcam} ;;
+  analysis) python -X faulthandler analysis.py --exp ${1:-n27_allcam} --old "$CVP_OLD/Dynamic3DGaussians" ;;
   sweep)
     python -X faulthandler sweep_frame0.py --seq $1 --cams 2,3,4,6,8,12,16,27 --iters 500,1000,3000,10000 --seeds 0,1 \
       && python plot_sweep.py --seq $1 ;;

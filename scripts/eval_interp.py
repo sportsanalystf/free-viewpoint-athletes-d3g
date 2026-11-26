@@ -2,13 +2,13 @@
 Keep only every g-th reconstructed frame, rebuild the frames in between with each interpolation method
 (nearest = frame repeat, linear = v6, cubic = new), render the 4 held-out cameras and compare with the real images.
 The model's own frame (all frames kept) is the upper bound. PSNR is reported on the whole image and on the athlete
-only (dilated foreground mask), since the static background hides most of the difference.
+only (the model's foreground render at the true frame, dilated; held-out cameras have no masks), since the
+static background hides most of the difference.
 
     python eval_interp.py --exp n27_allcam --gaps 2,4,8      -> results/interp/interp_<exp>.csv, crops_<exp>.jpg
 """
 import argparse, csv, os, json, numpy as np, torch
 from PIL import Image
-from scipy.ndimage import binary_dilation
 import sparse_lib as L
 import interp as IP
 
@@ -41,8 +41,10 @@ for seq in a.seqs.split(','):
         if (t, c) not in gt:
             fn = tmd['fn'][t][c]
             gt[(t, c)] = torch.tensor(np.array(Image.open(f'./data/{seq}/ims/{fn}'))[..., :3]).float().cuda().permute(2, 0, 1) / 255
-            s = np.array(Image.open(f"./data/{seq}/seg/{fn.replace('.jpg', '.png')}")); s = s[..., 0] if s.ndim == 3 else s
-            msk[(t, c)] = torch.tensor(binary_dilation(s > 0, iterations=5)).float().cuda()[None]
+            means, _, rots = IP.state_at(p, t, 'linear', None)                  # true frame t, same mask for every method
+            sg, _ = L.render(rv(p, means, p['seg_colors'], rots), tmd['w'], tmd['h'], tmd['k'][t][c], tmd['w2c'][t][c], is_rendervar=True)
+            m = (sg[0:1] > 0.5).float()[None]
+            msk[(t, c)] = torch.nn.functional.max_pool2d(m, 11, stride=1, padding=5)[0]
         return gt[(t, c)], msk[(t, c)]
 
     # speed of the fastest athlete points per frame, to find the hardest frame for the crop figure

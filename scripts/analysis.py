@@ -9,6 +9,7 @@ from PIL import Image
 
 ap = argparse.ArgumentParser(); ap.add_argument('--exp', default='n27_allcam')
 ap.add_argument('--seqs', default='basketball,boxes,football,juggle,softball,tennis'); ap.add_argument('--out', default='results/analysis')
+ap.add_argument('--old', default='', help='original Dynamic3DGaussians folder, for test renders that were not copied (read only)')
 a = ap.parse_args(); os.makedirs(a.out, exist_ok=True)
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 rows, gallery = [], []; fig, ax = plt.subplots(figsize=(6.5, 3.6))
@@ -26,12 +27,17 @@ for seq in a.seqs.split(','):
     rows.append(dict(seq=seq, pearson_r_speed_psnr=round(r, 3), mean_speed_cm=round(float(sp_cm[1:T].mean()), 2), max_speed_cm=round(float(sp_cm[1:T].max()), 2),
                      worst_frame=worst, worst_psnr=round(float(psnr[worst]), 2), best_frame=best, best_psnr=round(float(psnr[best]), 2)))
     tmd = json.load(open(f'./data/{seq}/test_meta.json')); fn = tmd['fn'][worst][0]
-    real = Image.open(f'./data/{seq}/ims/{fn}').convert('RGB'); ren = Image.open(f'{base}/test_renders/c0_{worst:03d}.png').convert('RGB')
-    m = np.array(Image.open(f"./data/{seq}/seg/{fn.replace('.jpg', '.png')}")); m = (m[..., 0] if m.ndim == 3 else m) > 0
-    ys, xs = np.nonzero(m)
-    if len(ys):
-        pad = 12; box = (max(0, xs.min() - pad), max(0, ys.min() - pad), min(real.width, xs.max() + pad), min(real.height, ys.max() + pad))
-        real, ren = real.crop(box), ren.crop(box)
+    rp = f'{base}/test_renders/c0_{worst:03d}.png'
+    if not os.path.exists(rp) and a.old: rp = f'{a.old}/output/{a.exp}/{seq}/test_renders/c0_{worst:03d}.png'
+    if not os.path.exists(rp): print(f'no test render for {seq} frame {worst}; skipping its gallery tile'); print(rows[-1], flush=True); del z, X; continue
+    real = Image.open(f'./data/{seq}/ims/{fn}').convert('RGB'); ren = Image.open(rp).convert('RGB')
+    if os.path.exists(skp):                                   # crop around the projected skeleton joints
+        import skeleton as SK
+        P = SK.load_aligned(skp)['joints'][worst][..., :3].reshape(-1, 3); P = P[~np.isnan(P[:, 0])]
+        uv, zz = SK.project(P, tmd['k'][worst][0], tmd['w2c'][worst][0]); uv = uv[zz > 0]
+        if len(uv):
+            pad = 40; box = (int(max(0, uv[:, 0].min() - pad)), int(max(0, uv[:, 1].min() - pad)), int(min(real.width, uv[:, 0].max() + pad)), int(min(real.height, uv[:, 1].max() + pad)))
+            if box[2] > box[0] + 10 and box[3] > box[1] + 10: real, ren = real.crop(box), ren.crop(box)
     hh = 220; real = real.resize((int(real.width * hh / real.height), hh)); ren = ren.resize(real.size)
     tile = Image.new('RGB', (real.width * 2 + 4, hh), (255, 255, 255)); tile.paste(real, (0, 0)); tile.paste(ren, (real.width + 4, 0)); gallery.append(tile)
     print(rows[-1], flush=True); del z, X
