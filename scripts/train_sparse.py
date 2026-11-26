@@ -14,7 +14,11 @@ ap.add_argument('--seq', default='basketball'); ap.add_argument('--cams', type=i
 ap.add_argument('--init', choices=['allcam', 'random'], default='allcam'); ap.add_argument('--seed', type=int, default=0)
 ap.add_argument('--exp', required=True); ap.add_argument('--frames', type=int, default=0, help='0 = all 150')
 ap.add_argument('--iters0', type=int, default=10000); ap.add_argument('--iters', type=int, default=2000)
+ap.add_argument('--weights', default='', help='override D3G loss weights, e.g. rigid=0,rot=0 (prior ablation)')
 a = ap.parse_args()
+for kv in filter(None, a.weights.split(',')):
+    k, v = kv.split('='); assert k in L.WEIGHTS, k; L.WEIGHTS[k] = float(v)
+print('loss weights:', L.WEIGHTS, flush=True)
 np.random.seed(a.seed); torch.manual_seed(a.seed)
 out = f'./output/{a.exp}/{a.seq}'; os.makedirs(f'{out}/test_renders', exist_ok=True)
 md, tmd = L.load_meta(a.seq)

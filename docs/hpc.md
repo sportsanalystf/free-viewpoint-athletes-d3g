@@ -38,18 +38,22 @@ Known issues: V100 nodes can't run the rasterizer (the scripts exclude them); du
 `gpu` partition may need `--gres=gpu:1`; `unzip` rejects the released `output.zip` (`hpc/fetch_pretrained.slurm`
 uses Python's zipfile).
 
-## Jobs (`hpc/jobs.slurm`, submit from the repo root)
+## Jobs (submit from the repo root)
+
+`hpc/jobs.slurm` (GPU) and `hpc/cpu.slurm` (CPU) both run `hpc/run_role.sh`, which lists every role. Main ones:
 
 | Role | Command | Time |
 |---|---|---|
-| rebuild | `sbatch hpc/jobs.slurm rebuild` | ~10 min |
+| rebuild | `sbatch hpc/jobs.slurm rebuild` | ~5 min |
 | full | `sbatch hpc/jobs.slurm full <seq> 27 allcam` | ~3 h |
-| cine | `sbatch hpc/jobs.slurm cine <seq> <exp>` or `bash hpc/submit_v6.sh` (all six) | ~20 min per clip |
-| videos | `sbatch hpc/jobs.slurm videos <seq> <exp,...>` | ~30 min |
-| figs | `sbatch hpc/jobs.slurm figs` | ~25 min |
+| cine | `sbatch hpc/jobs.slurm cine <seq> n27_allcam --variant full` | ~20 min |
+| figs | `sbatch hpc/jobs.slurm figs ours` | ~5-25 min |
+| interp | `sbatch hpc/jobs.slurm interp n27_allcam` | ~30 min |
+| align / sheets / ablate / tracks / analysis | `sbatch hpc/cpu.slurm <role> ...` | minutes |
+| everything for the final | `bash hpc/submit_final.sh` (see [experiments.md](experiments.md)) | ~4 h wall time |
 
 Keep jobs off V100s with `${V100:+--exclude=$V100}`, where
-`V100=$(sinfo -h -p gpu -o "%N %G" | grep -i v100 | awk '{print $1}' | paste -sd, -)`.
+`V100=$(sinfo -h -p gpu -o "%N %G" | grep -i v100 | awk '{print $1}' | paste -sd, -)` (the submit scripts do this).
 
 ## Keeping local and cluster in sync
 

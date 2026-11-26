@@ -22,9 +22,13 @@ from matplotlib.collections import LineCollection
 import sparse_lib as L
 import cine_path as CP
 
-OUT = 'results/stage_figs'; os.makedirs(OUT, exist_ok=True)
+import argparse
+_ap = argparse.ArgumentParser(); _ap.add_argument('--models', default='mixed', choices=['mixed', 'ours', 'released'],
+    help="mixed = our basketball + released others (mid-term); ours = n27_allcam for all six; released = pretrained for all")
+_a = _ap.parse_args()
+OUT = 'results/stage_figs' + ('' if _a.models == 'mixed' else f'_{_a.models}'); os.makedirs(OUT, exist_ok=True)
 SEQS = ['basketball', 'boxes', 'football', 'juggle', 'softball', 'tennis']
-EXP = {s: ('n27_allcam' if s == 'basketball' else 'pretrained') for s in SEQS}
+EXP = {s: {'mixed': 'n27_allcam' if s == 'basketball' else 'pretrained', 'ours': 'n27_allcam', 'released': 'pretrained'}[_a.models] for s in SEQS}
 TMID = 75
 
 
@@ -281,6 +285,6 @@ def fig_planner():
 
 if __name__ == '__main__':
     fig_inputs(); fig_rig(); fig_masks(); fig_init(); fig_frame0(); fig_planner(); fig_models()
-    with zipfile.ZipFile('results/stage_figs.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-        for f in sorted(os.listdir(OUT)): z.write(f'{OUT}/{f}', f'stage_figs/{f}')
-    print('wrote results/stage_figs.zip with', len(os.listdir(OUT)), 'files')
+    with zipfile.ZipFile(f'{OUT}.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+        for f in sorted(os.listdir(OUT)): z.write(f'{OUT}/{f}', f'{os.path.basename(OUT)}/{f}')
+    print(f'wrote {OUT}.zip with', len(os.listdir(OUT)), 'files')

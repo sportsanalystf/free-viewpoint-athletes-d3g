@@ -5,9 +5,53 @@ import json, os, numpy as np, torch
 from PIL import Image
 from train import get_dataset, initialize_params, initialize_optimizer, get_loss, \
     initialize_per_timestep, initialize_post_first_timestep
-from helpers import setup_camera, params2rendervar, params2cpu, save_params
-from external import calc_psnr, calc_ssim, densify
+from helpers import setup_camera, params2rendervar, params2cpu, save_params, l1_loss_v1, l1_loss_v2, \
+    weighted_l2_loss_v1, weighted_l2_loss_v2, quat_mult
+from external import calc_psnr, calc_ssim, densify, build_rotation
 from diff_gaussian_rasterization import GaussianRasterizer as Renderer
+
+# D3G's loss weights (train.py). The prior ablation sets some of them to 0 (train_sparse.py --weights rigid=0).
+WEIGHTS = {'im': 1.0, 'seg': 3.0, 'rigid': 4.0, 'rot': 4.0, 'iso': 2.0, 'floor': 2.0, 'bg': 20.0, 'soft_col_cons': 0.01}
+
+
+def get_loss_w(params, curr_data, variables, is_initial_timestep, weights=None):
+    """Same as D3G's train.get_loss, but with configurable weights (and terms with weight 0 are skipped)."""
+    w = WEIGHTS if weights is None else weights
+    losses = {}
+    rendervar = params2rendervar(params)
+    rendervar['means2D'].retain_grad()
+    im, radius, _, = Renderer(raster_settings=curr_data['cam'])(**rendervar)
+    curr_id = curr_data['id']
+    im = torch.exp(params['cam_m'][curr_id])[:, None, None] * im + params['cam_c'][curr_id][:, None, None]
+    losses['im'] = 0.8 * l1_loss_v1(im, curr_data['im']) + 0.2 * (1.0 - calc_ssim(im, curr_data['im']))
+    variables['means2D'] = rendervar['means2D']
+    segrendervar = params2rendervar(params)
+    segrendervar['colors_precomp'] = params['seg_colors']
+    seg, _, _, = Renderer(raster_settings=curr_data['cam'])(**segrendervar)
+    losses['seg'] = 0.8 * l1_loss_v1(seg, curr_data['seg']) + 0.2 * (1.0 - calc_ssim(seg, curr_data['seg']))
+    if not is_initial_timestep:
+        is_fg = (params['seg_colors'][:, 0] > 0.5).detach()
+        fg_pts = rendervar['means3D'][is_fg]; fg_rot = rendervar['rotations'][is_fg]
+        rel_rot = quat_mult(fg_rot, variables["prev_inv_rot_fg"]); rot = build_rotation(rel_rot)
+        neighbor_pts = fg_pts[variables["neighbor_indices"]]
+        curr_offset = neighbor_pts - fg_pts[:, None]
+        if w['rigid'] > 0:
+            curr_offset_in_prev_coord = (rot.transpose(2, 1)[:, None] @ curr_offset[:, :, :, None]).squeeze(-1)
+            losses['rigid'] = weighted_l2_loss_v2(curr_offset_in_prev_coord, variables["prev_offset"], variables["neighbor_weight"])
+        if w['rot'] > 0:
+            losses['rot'] = weighted_l2_loss_v2(rel_rot[variables["neighbor_indices"]], rel_rot[:, None], variables["neighbor_weight"])
+        if w['iso'] > 0:
+            curr_offset_mag = torch.sqrt((curr_offset ** 2).sum(-1) + 1e-20)
+            losses['iso'] = weighted_l2_loss_v1(curr_offset_mag, variables["neighbor_dist"], variables["neighbor_weight"])
+        losses['floor'] = torch.clamp(fg_pts[:, 1], min=0).mean()
+        bg_pts = rendervar['means3D'][~is_fg]; bg_rot = rendervar['rotations'][~is_fg]
+        losses['bg'] = l1_loss_v2(bg_pts, variables["init_bg_pts"]) + l1_loss_v2(bg_rot, variables["init_bg_rot"])
+        losses['soft_col_cons'] = l1_loss_v2(params['rgb_colors'], variables["prev_col"])
+    loss = sum([w[k] * v for k, v in losses.items()])
+    seen = radius > 0
+    variables['max_2D_radius'][seen] = torch.max(radius[seen], variables['max_2D_radius'][seen])
+    variables['seen'] = seen
+    return loss, variables
 
 
 def load_meta(seq):
@@ -76,7 +120,7 @@ def train_timestep(params, variables, optimizer, data, iters, first, start=0):
     for i in range(start, start + iters):
         if not todo: todo = data.copy()
         cur = todo.pop(np.random.randint(len(todo)))
-        loss, variables = get_loss(params, cur, variables, first); loss.backward()
+        loss, variables = get_loss_w(params, cur, variables, first); loss.backward()
         with torch.no_grad():
             if first: params, variables = densify(params, variables, optimizer, i)
             optimizer.step(); optimizer.zero_grad(set_to_none=True)

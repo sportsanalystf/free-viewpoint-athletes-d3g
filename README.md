@@ -19,6 +19,8 @@ tested on the PanopticSports clips. CS 6501 3D Computer Vision (UVA, Fall 2026) 
 | D. Direct the replay | 9 scene frame from the rig, 10 players + key moment, 11 shot plan, 12 clearance/occlusion/lens, 13 render in-between times | a 17 s replay at 1280×720, 30 fps |
 
 Each step and its intermediate output is described in [docs/pipeline.md](docs/pipeline.md).
+The final-project additions (skeleton key moment, facing-aware camera, cubic in-between frames) and every
+experiment are described in [docs/experiments.md](docs/experiments.md).
 
 ## Results so far
 
