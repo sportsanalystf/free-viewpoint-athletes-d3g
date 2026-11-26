@@ -1,13 +1,13 @@
-"""Figures for the final report, from the cluster outputs kept in media/final/ (see docs/experiments.md).
-    python tools/final_figures.py        -> report/final/figures/*
-Needs Pillow and ffmpeg. Mid-term figures are made by tools/compose_figures.py.
+"""Figures for the final report, from the cluster outputs kept in outputs/final/ (see docs/experiments.md).
+    python pipeline/figures/final_figures.py        -> report/final/figures/*
+Needs Pillow and ffmpeg. Mid-term figures are made by pipeline/figures/compose_figures.py.
 """
 import os, subprocess, shutil
 from PIL import Image, ImageDraw
 from compose_figures import tile, save as _save, font
 
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-M = f'{REPO}/media/final'; OUT = f'{REPO}/report/final/figures'; FR = f'{M}/frames'
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+M = f'{REPO}/outputs/final'; OUT = f'{REPO}/report/final/figures'; FR = f'{M}/frames'
 SPORTS = ['basketball', 'boxes', 'football', 'juggle', 'softball', 'tennis']
 os.makedirs(OUT, exist_ok=True); os.makedirs(FR, exist_ok=True)
 F = font(20)

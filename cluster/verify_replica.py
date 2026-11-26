@@ -1,7 +1,7 @@
 """Check that the replica reproduces our recorded results (standard library only).
 Compares the replica's fresh stage-figure run with results/ in the repo:
 held-out PSNR/SSIM per sport and the director's freeze frame per sport.
-    source hpc/config.sh && python3 hpc/verify_replica.py "$D3G"
+    source cluster/config.sh && python3 cluster/verify_replica.py "$D3G"
 """
 import csv, json, os, sys
 
@@ -10,7 +10,7 @@ D3G = sys.argv[1] if len(sys.argv) > 1 else '.'
 new_dir = os.path.join(D3G, 'results', 'stage_figs')
 ok = True
 
-ref = {r['seq']: r for r in csv.DictReader(open(f'{REPO}/results/heldout_eval.csv'))}
+ref = {r['seq']: r for r in csv.DictReader(open(f'{REPO}/results/midterm/heldout_eval.csv'))}
 new_csv = os.path.join(new_dir, '08_eval.csv')
 if not os.path.exists(new_csv):
     sys.exit(f'FAIL no {new_csv} yet (has the figs job finished?)')
@@ -23,7 +23,7 @@ for s, r in ref.items():
     good = dp <= 0.05 and ds <= 0.002; ok &= good
     print(f'{s:12s} {float(r["psnr"]):9.2f} {float(n["psnr"]):8.2f} {float(r["ssim"]):9.3f} {float(n["ssim"]):8.3f}  {"OK" if good else "DIFFERENT"}')
 
-ref_p = json.load(open(f'{REPO}/results/planner_keymoments.json'))
+ref_p = json.load(open(f'{REPO}/results/midterm/planner_keymoments.json'))
 new_p_path = os.path.join(new_dir, '10_planner.json')
 if os.path.exists(new_p_path):
     new_p = json.load(open(new_p_path))

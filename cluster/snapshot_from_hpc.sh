@@ -2,8 +2,8 @@
 # Pack everything small and useful from the cluster into one archive to bring back to the local repo:
 # code, logs, results (videos, figures, CSVs), run configs, the D3G patch, and the exact environment.
 # Leaves out the dataset, model weights (*.npz), temporary render folders and the raw Panoptic videos.
-#   bash hpc/snapshot_from_hpc.sh                                   (the replica, $CVP_ROOT)
-#   CVP_ROOT=/scratch/$USER/cv_project CVP_ENV=d3g bash hpc/snapshot_from_hpc.sh   (the original setup)
+#   bash cluster/snapshot_from_hpc.sh                                   (the replica, $CVP_ROOT)
+#   CVP_ROOT=/scratch/$USER/cv_project CVP_ENV=d3g bash cluster/snapshot_from_hpc.sh   (the original setup)
 #   -> /scratch/$USER/<root name>_snapshot_<date>.tar.gz
 set -uo pipefail
 source "$(cd "$(dirname "$0")" && pwd)/config.sh"; cd "$WD"
@@ -27,4 +27,4 @@ tar -czf "$OUT" --ignore-failed-read \
   $(ls Dynamic3DGaussians/output/*/*/per_frame.csv Dynamic3DGaussians/output/*/*/config.json 2>/dev/null) \
   $( [ -d "$HOME/exp" ] && echo "-C $HOME exp" ) 2>&1 | grep -v "Removing leading" || true
 ls -lh "$OUT"
-echo "Download this file from OOD (Files > /scratch/$USER) and put it in the local repo's hpc_pull/ folder."
+echo "Download this file from OOD (Files > /scratch/$USER) and unpack the parts you need into the local repo's outputs/ folder (not in git)."

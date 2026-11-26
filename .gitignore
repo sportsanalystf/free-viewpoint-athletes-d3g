@@ -1,9 +1,7 @@
 # Large or third-party files stay out of git
 data/*
 !data/README.md
-media/
-hpc_pull/
-MANIFEST.sha256
+outputs/
 *.npz
 *.mp4
 *.webm

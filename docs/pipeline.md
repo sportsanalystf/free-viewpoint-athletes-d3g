@@ -44,7 +44,7 @@ The model also gives depth and athlete labels.
 ![Real, rendered, depth, labels](img/08_heldout_layers.jpg)
 ![All six sports, real vs rendered, and PSNR per frame](img/heldout_all_sports.jpg)
 
-## D. Direct the replay (`src/cine_path.py`)
+## D. Direct the replay (`pipeline/3_director/cine_path.py`)
 
 **9. Scene frame.** From the camera rig alone: up direction, the point all optical axes meet, dome radius, camera heights.
 
@@ -61,6 +61,6 @@ widen the lens to fit the play, smooth the aim twice.
 ![How the director improved: v1 too close, v2 pushed into a wall, v3 lost a player, v6](img/12_director_versions.jpg)
 
 **13. Render in-between times.** For slow motion (0.4×) and the freeze, blend each Gaussian's position, colour and
-rotation between frames, so no frame repeats. Out: 17 s at 1280×720, 30 fps (`scripts/render_cinematic.py`).
+rotation between frames, so no frame repeats. Out: 17 s at 1280×720, 30 fps (`pipeline/3_director/render_cinematic.py`).
 
 ![Final replay frame](img/13_final_frame.jpg)

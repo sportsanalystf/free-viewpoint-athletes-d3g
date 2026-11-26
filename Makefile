@@ -1,13 +1,18 @@
-# Local helpers (the training and rendering run on the cluster, see docs/hpc.md)
-.PHONY: figures report bundle
+# Local helpers. Training and rendering run on the cluster (see docs/hpc.md).
+.PHONY: figures workflow report overleaf clean
 
-figures:            ## rebuild report figures from media/ (needs Pillow + ffmpeg)
-	python3 tools/compose_figures.py
-	cd tools && pdflatex -interaction=nonstopmode workflow.tex >/dev/null && cp workflow.pdf ../report/midterm/figures/workflow.pdf
+figures: workflow     ## rebuild the final report figures from outputs/ (needs Pillow + ffmpeg)
+	cd pipeline/figures && python3 final_figures.py
 
-report:             ## build report/midterm/main.pdf
-	cd report/midterm && pdflatex -interaction=nonstopmode main.tex >/dev/null && bibtex main >/dev/null \
-	  && pdflatex -interaction=nonstopmode main.tex >/dev/null && pdflatex -interaction=nonstopmode main.tex
+workflow:             ## the workflow diagram
+	cd pipeline/figures && pdflatex -interaction=nonstopmode workflow.tex >/dev/null && cp workflow.pdf ../../report/final/figures/workflow.pdf
 
-bundle:             ## (no git on the cluster) zip the repo for upload, with MANIFEST.sha256
-	python3 tools/make_bundle.py
+report:               ## build report/final/main.pdf
+	cd report/final && latexmk -pdf -interaction=nonstopmode -quiet main.tex
+
+overleaf:             ## report/final/final_report_overleaf.zip (upload to Overleaf as a new project)
+	cd report/final && rm -f final_report_overleaf.zip && zip -qr final_report_overleaf.zip main.tex main.bib cvpr.sty ieeenat_fullname.bst figures
+
+clean:                ## remove LaTeX build files and Python caches
+	cd report/final && latexmk -c >/dev/null 2>&1 || true
+	find . -name __pycache__ -type d -prune -exec rm -rf {} +

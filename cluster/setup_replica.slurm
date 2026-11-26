@@ -6,13 +6,13 @@
 #SBATCH -t 03:00:00
 #SBATCH -J setup_v2
 #SBATCH -o /scratch/%u/cv_project_v2/logs/%x_%j.log
-# Build a fresh, self-contained copy of the project under $CVP_ROOT (hpc/config.sh), CPU-only part:
+# Build a fresh, self-contained copy of the project under $CVP_ROOT (cluster/config.sh), CPU-only part:
 #   1. clone Dynamic3DGaussians + the rasterizer at the exact commits we used, apply our k-NN patch
 #   2. create a new conda env ($CVP_ENV) with the same packages as the original "d3g" env
 #   3. copy data and models READ-ONLY from the original folder ($CVP_OLD); nothing there is changed
-# Submitted by hpc/setup_replica.sh, which then chains the GPU rasterizer build and a check run.
+# Submitted by cluster/setup_replica.sh, which then chains the GPU rasterizer build and a check run.
 set -euo pipefail
-REPO=${REPO:-$SLURM_SUBMIT_DIR}; source "$REPO/hpc/config.sh"
+REPO=${REPO:-$SLURM_SUBMIT_DIR}; source "$REPO/cluster/config.sh"
 [ "$(realpath -m "$CVP_ROOT")" != "$(realpath -m "$CVP_OLD")" ] || { echo "FAIL: CVP_ROOT points at the original folder"; exit 1; }
 step() { echo; echo "== $*  ($(date +%T))"; }
 mkdir -p "$WD" "$LOGS"
@@ -20,7 +20,7 @@ mkdir -p "$WD" "$LOGS"
 step "1. upstream code"
 [ -d "$D3G/.git" ] || git clone -q https://github.com/JonathonLuiten/Dynamic3DGaussians "$D3G"
 git -C "$D3G" checkout -q "$D3G_COMMIT"
-grep -q cKDTree "$D3G/helpers.py" || git -C "$D3G" apply "$REPO/hpc/patches/helpers_knn.diff" || python3 "$REPO/hpc/patch_d3g_knn.py" "$D3G"
+grep -q cKDTree "$D3G/helpers.py" || git -C "$D3G" apply "$REPO/cluster/patches/helpers_knn.diff" || python3 "$REPO/cluster/patch_d3g_knn.py" "$D3G"
 grep -q cKDTree "$D3G/helpers.py" && echo "PASS Dynamic3DGaussians at ${D3G_COMMIT:0:7}, k-NN patched"
 [ -d "$RAST/.git" ] || git clone -q --recursive https://github.com/JonathonLuiten/diff-gaussian-rasterization-w-depth "$RAST"
 git -C "$RAST" checkout -q "$RAST_COMMIT" && git -C "$RAST" submodule update -q --init --recursive
@@ -32,7 +32,7 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 [ -d "$CVP_ENV" ] || conda create -y -q -p "$CVP_ENV" python=3.10
 conda activate "$CVP_ENV"
 pip install -q torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
-grep -viE '^(torch|torchvision|triton|nvidia-|cuda-|diff[-_]gaussian)' "$REPO/hpc/env/pip_freeze_d3g.txt" \
+grep -viE '^(torch|torchvision|triton|nvidia-|cuda-|diff[-_]gaussian)' "$REPO/cluster/env/pip_freeze_d3g.txt" \
   | sed 's/^packaging @.*/packaging/' > "$WD/requirements_frozen.txt"
 pip install -q -r "$WD/requirements_frozen.txt" || {
   echo "bulk install failed, installing one by one"

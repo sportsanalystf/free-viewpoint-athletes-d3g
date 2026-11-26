@@ -1,4 +1,4 @@
-# Body of every job (sourced by hpc/jobs.slurm on GPU nodes and hpc/cpu.slurm on CPU nodes). First argument = role:
+# Body of every job (sourced by cluster/jobs.slurm on GPU nodes and cluster/cpu.slurm on CPU nodes). First argument = role:
 #   rebuild                       compile the rasterizer for every GPU type on the cluster (GPU)
 #   full SEQ N INIT [W EXP]       train the 4D model on SEQ with N cameras; optional loss-weight override W
 #                                 (e.g. rigid=0) saved as experiment EXP (prior ablation)             (GPU, ~3 h)
@@ -14,9 +14,9 @@
 #   sweep SEQ                     (mid-term) frame-0 camera sweep                                        (GPU)
 set -u
 REPO=${REPO:-$SLURM_SUBMIT_DIR}
-[ -f "$REPO/hpc/run_role.sh" ] || { echo "FAIL: submit from the repo root (cd \$CVP_ROOT/cv-project), or set REPO=..."; exit 1; }
-source "$REPO/hpc/env.sh"
-cp "$REPO"/src/*.py "$REPO"/scripts/*.py "$D3G"/      # the scripts run inside the Dynamic3DGaussians checkout
+[ -f "$REPO/cluster/run_role.sh" ] || { echo "FAIL: submit from the repo root (cd \$CVP_ROOT/cv-project), or set REPO=..."; exit 1; }
+source "$REPO/cluster/env.sh"
+cp "$REPO"/pipeline/common/*.py "$REPO"/pipeline/[123]_*/*.py "$D3G"/   # the pipeline runs inside the Dynamic3DGaussians checkout
 cd "$D3G"
 echo "role $*  repo $(git -C "$REPO" rev-parse --short HEAD 2>/dev/null || echo '?')"
 role=$1; shift

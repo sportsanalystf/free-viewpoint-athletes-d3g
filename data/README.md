@@ -8,7 +8,7 @@ Nothing in this folder is tracked by git. On the cluster the data lives in `/scr
 
 - Data: `https://omnomnom.vision.rwth-aachen.de/data/Dynamic3DGaussians/data.zip` (≈590 MB), unzip into
   `Dynamic3DGaussians/data/`
-- Released trained models (≈10.8 GB): `.../Dynamic3DGaussians/output.zip`, fetched by `hpc/fetch_pretrained.slurm`
+- Released trained models (≈10.8 GB): `.../Dynamic3DGaussians/output.zip` (not needed: we trained all six models ourselves)
 
 **CMU Panoptic Studio** raw capture `161029_sports1` (HD videos, calibration, 3D skeletons), downloaded with
 the `panoptic-toolbox` scripts; used only to align the 3D skeletons to the clips.

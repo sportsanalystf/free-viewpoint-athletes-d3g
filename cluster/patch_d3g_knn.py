@@ -1,6 +1,6 @@
 """One-time patch for the Dynamic3DGaussians checkout: replace the Open3D k-NN in helpers.py
 (it segfaults on the UVA cluster) with a SciPy KD-tree that returns the same arrays.
-   python hpc/patch_d3g_knn.py $D3G   (see hpc/config.sh)
+   python cluster/patch_d3g_knn.py $D3G   (see cluster/config.sh)
 Safe to run twice."""
 import sys, re, pathlib
 p = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.') / 'helpers.py'

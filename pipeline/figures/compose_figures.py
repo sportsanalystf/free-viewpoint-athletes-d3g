@@ -1,20 +1,20 @@
-"""Build the report / slide figures from the HPC outputs kept in media/.
+"""Build the mid-term report figures from the cluster outputs kept in outputs/midterm/.
 
-    python tools/compose_figures.py            # extract video frames, then write report/midterm/figures/*
-    python tools/compose_figures.py --no-frames  # reuse frames already in media/frames
+    python pipeline/figures/compose_figures.py            # extract video frames, then write report/midterm/figures/*
+    python pipeline/figures/compose_figures.py --no-frames  # reuse frames already in outputs/midterm/frames
 
 Inputs (not in git, see .gitignore):
-  media/stage_figs/        results/stage_figs.zip from the cluster (hpc/jobs.slurm figs)
-  media/videos/            cinematic_v6/<sport>_v6.mp4 and director_versions/basketball_v1..v4.mp4
-  media/cine_paths/        cine_path_basketball_n27_allcam_v6.png
-  media/inspiration/       atlas.png, arcturus.png, mirrash7.png, sdmiddlecamp.png (screenshots)
-Needs Pillow and ffmpeg. The workflow diagram is tools/workflow.tex (pdflatex tools/workflow.tex).
+  outputs/midterm/stage_figs/   stage figures from the cluster (cluster/jobs.slurm figs)
+  outputs/midterm/videos/            cinematic_v6/<sport>_v6.mp4 and director_versions/basketball_v1..v4.mp4
+  outputs/midterm/cine_paths/        cine_path_basketball_n27_allcam_v6.png
+  outputs/midterm/inspiration/ atlas.png, arcturus.png, mirrash7.png, sdmiddlecamp.png (screenshots)
+Needs Pillow and ffmpeg. The workflow diagram is pipeline/figures/workflow.tex.
 """
 import os, sys, subprocess
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-M = f'{REPO}/media'; SF = f'{M}/stage_figs'; FR = f'{M}/frames'; OUT = f'{REPO}/report/midterm/figures'
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+M = f'{REPO}/outputs/midterm'; SF = f'{M}/stage_figs'; FR = f'{M}/frames'; OUT = f'{REPO}/report/midterm/figures'
 SPORTS = ['basketball', 'boxes', 'football', 'juggle', 'softball', 'tennis']
 os.makedirs(FR, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 
