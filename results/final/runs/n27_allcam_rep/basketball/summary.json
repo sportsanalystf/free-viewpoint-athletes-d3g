@@ -1,0 +1,1 @@
+{"exp": "n27_allcam_rep", "seq": "basketball", "note": "control run: identical settings to n27_allcam (default loss weights, seed 0); job 23497677", "psnr_frame0": 29.36, "psnr_mean": 28.54, "ssim_mean": 0.895}

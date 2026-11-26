@@ -157,7 +157,7 @@ with $\mathbf{p}_i$ the positions at frames $t{-}1,\dots,t{+}2$. It passes exact
 \noindent\textbf{Setup.} All six models are ours, trained with the same code and settings on the UVA HPC cluster (A100, A40, A6000 and newer GPUs; about 3 hours per clip, under 1\,GB of GPU memory). All image scores use the held-out views, which training never saw. We ask five questions. \textbf{Q1} Do the models match real views they never saw? \textbf{Q2} Do they capture the athletes' true 3D motion? \textbf{Q3} Does cubic interpolation give better in-between frames? \textbf{Q4} Does the skeleton find the right moment? \textbf{Q5} What does each director rule buy? A last part asks which D3G priors matter.
 
 \subsection{Q1: held-out image quality}
-Our models score 27.0--28.7\dB PSNR and 0.89--0.91 SSIM on held-out views (\cref{tab:q1q2}, \cref{fig:heldout}). On the five clips with released models we are 0.3--1.2\dB lower (0.65\dB on average). We used the same code, settings and seed, so we put most of this gap down to run-to-run noise: in \cref{sec:priors}, four basketball runs that are identical up to frame 0 already differ by 1.2\dB at frame 0. Newer library versions and different GPUs add to it. In every clip PSNR drops by about 1\dB from the well-fit frame 0 and then holds steady.
+Our models score 27.0--28.7\dB PSNR and 0.89--0.91 SSIM on held-out views (\cref{tab:q1q2}, \cref{fig:heldout}). On the five clips with released models we are 0.3--1.2\dB lower (0.65\dB on average). This gap is within run-to-run noise. We trained basketball a second time with exactly the same code, settings and seed (\cref{sec:priors}), and the repeat scores 28.54\dB, 1.5\dB above the first run. GPU training is not bit-for-bit repeatable, and our jobs ran on different GPU types. In every clip PSNR drops by about 1\dB from the well-fit frame 0 and then holds steady.
 
 \begin{figure}[t]
 \centering
@@ -327,24 +327,28 @@ naive orbit & 0.61 & 4.10 & 40.0 & 36.3 & 70.2 & 3.31\\
 
 \subsection{Which physical priors matter?}
 \label{sec:priors}
-D3G's three priors are meant to keep motion physical. We retrained basketball with each one switched off (\cref{tab:priors}). The result is a trade-off. Every prior \emph{lowers} held-out PSNR a little, but makes the 3D motion more correct. Without rigidity, mean track error rises from 9.2 to 13.4\cm, the median almost doubles, and torso error grows five-fold (2.9$\to$14.1\cm): neighbouring Gaussians drift apart while each still looks right in the images. Without rotation or isometry, arm error grows by 4--13\cm. A caution on the PSNR column: the priors only act from frame 1 on, so all four runs are identical at frame 0, yet they already differ by 1.2\dB there. This is run-to-run noise, and the PSNR gaps are of that size. The drop over the clip is similar for all four ($-0.6$ to $-1.0$\dB). So the priors' value shows up in 3D, which only a check against ground-truth motion can see.
+D3G's three priors are meant to keep motion physical. We retrained basketball with each one switched off (\cref{tab:priors}). To know which differences are real, we also trained full D3G a second time with identical settings. The two full runs show the run-to-run noise: 1.5\dB in PSNR, 1.4\cm in mean track error and 6.5\cm in arm error, but only 0.07\cm in median error and 0.1\cm on the torso.
+
+Against that yardstick, \emph{no prior changes image quality}: every ablated run's PSNR lies between those of the two full runs. The 3D motion tells a different story. \emph{Rigidity} matters most. Without it the median error rises from 3.7 to 6.1\cm, the share of points within 5\cm drops from 66\% to 40\%, and torso error grows five-fold (3$\to$14\cm). Neighbouring Gaussians drift apart while each one still looks right in the images. \emph{Rotation} has a small but real effect (median $+0.6$\cm, torso $+0.6$\cm). \emph{Isometry} shows no effect beyond the noise. Arm errors swing by several centimetres even between the two identical runs, because ball Gaussians start near the hands, so we draw no conclusion from that column. The priors' value is in 3D, where only a check against ground-truth motion can see it.
 
 \begin{table}[t]
 \centering\small
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lcc|cccc}
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{lcc|ccccc}
 \toprule
-& \multicolumn{2}{c|}{PSNR (dB)} & \multicolumn{4}{c}{track error (cm)}\\
-Basketball & frame 0 & mean & mean & med. & torso & arms\\
+& \multicolumn{2}{c|}{PSNR (dB)} & \multicolumn{5}{c}{track error (cm)}\\
+Basketball & fr.\ 0 & mean & mean & med. & ${<}5$\cm & torso & arms\\
 \midrule
-full D3G & 27.99 & 27.03 & \textbf{9.22} & \textbf{3.66} & \textbf{2.94} & 24.9\\
-$-$ rigidity & 28.48 & 27.86 & 13.42 & 6.11 & 14.12 & \textbf{11.7}\\
-$-$ rotation & 29.20 & 28.41 & 11.08 & 4.28 & 3.62 & 29.2\\
-$-$ isometry & 28.59 & 27.68 & 11.91 & 3.77 & 3.00 & 37.8\\
+full D3G & 27.99 & 27.03 & 9.22 & 3.66 & 67\% & 2.94 & 24.9\\
+\quad repeat & 29.36 & 28.54 & 10.64 & 3.73 & 65\% & 3.05 & 31.4\\
+\midrule
+$-$ rigidity & 28.48 & 27.86 & 13.42 & \textbf{6.11} & \textbf{40\%} & \textbf{14.12} & 11.7\\
+$-$ rotation & 29.20 & 28.41 & 11.08 & 4.28 & 59\% & 3.62 & 29.2\\
+$-$ isometry & 28.59 & 27.68 & 11.91 & 3.77 & 63\% & 3.00 & 37.8\\
 \bottomrule
 \end{tabular}
 \vspace{-0.6em}
-\caption{\textbf{Prior ablation.} Frame 0 is trained identically in all runs (priors start at frame 1), so its spread shows the run-to-run noise.}
+\caption{\textbf{Prior ablation.} The two full runs use identical settings; their gap is the run-to-run noise. Bold: clearly beyond it.}
 \label{tab:priors}
 \vspace{-1em}
 \end{table}
@@ -381,7 +385,7 @@ $-$ isometry & 28.59 & 27.68 & 11.91 & 3.77 & 3.00 & 37.8\\
 \section{Conclusion}
 \label{sec:conclusion}
 
-We built an open pipeline that turns synchronized multi-angle video into a cinematic 3D replay, and we tested each step on six sports with models we trained ourselves. The 4D models match unseen views (27--29\dB) and follow the athletes' joints to a few centimetres. Three additions fix the mid-term's weak spots. Skeleton cues find the key moment far better than the ball rule. A facing-aware path cuts back views by up to a third where the old rule failed. Cubic interpolation gives sharper slow motion, up to 1.5\dB better on the athlete. Two findings were less expected. D3G's priors trade a little image quality for much better 3D motion, which only ground-truth motion can reveal. And error builds up over time rather than with speed. Next steps are a faster, feed-forward model, skeletons from a pose estimator so the pipeline runs outside the studio, and an interactive viewer where the audience picks its own angle. Code: \url{https://github.com/sportsanalystf/free-viewpoint-athletes-d3g}.
+We built an open pipeline that turns synchronized multi-angle video into a cinematic 3D replay, and we tested each step on six sports with models we trained ourselves. The 4D models match unseen views (27--29\dB) and follow the athletes' joints to a few centimetres. Three additions fix the mid-term's weak spots. Skeleton cues find the key moment far better than the ball rule. A facing-aware path cuts back views by up to a third where the old rule failed. Cubic interpolation gives sharper slow motion, up to 1.5\dB better on the athlete. Two findings were less expected. D3G's priors leave image quality unchanged, yet rigidity is what keeps the 3D motion right, which only ground-truth motion can reveal. And error builds up over time rather than with speed. Next steps are a faster, feed-forward model, skeletons from a pose estimator so the pipeline runs outside the studio, and an interactive viewer where the audience picks its own angle. Code: \url{https://github.com/sportsanalystf/free-viewpoint-athletes-d3g}.
 
 {\small
 \bibliographystyle{ieeenat_fullname}
