@@ -7,3 +7,6 @@ The Q6 viewer-study slide has blanks to fill once votes are in.
 
 Short version for a 10-minute slot (12 slides, with speaker notes):
 https://claude.ai/artifact/2WMEvqCeQhLsTMh6CNYXGj  (private; same export options).
+
+Detailed walkthrough (60 slides: every step with its input, output, math and code; all experiments; critique and applications):
+https://claude.ai/artifact/U6YwpDiSBxRqapmnvDHY49  (private).
