@@ -18,8 +18,6 @@
 \newcommand{\cm}{\,cm\xspace}
 \newcommand{\step}[1]{\textbf{(#1)}}
 \newcommand{\new}[1]{\textbf{[#1]}}
-% user-study numbers: fill in from the 'votes' collection before submission (search for \pending)
-\newcommand{\pending}[1]{\textcolor{red}{#1}}
 
 \title{Open Free-Viewpoint Reconstruction of Athletes with Dynamic 3D Gaussians}
 \author{Faizan Khan\\ University of Virginia\\ {\tt\small xdy6sg@virginia.edu}}
@@ -58,7 +56,7 @@ None of them releases a full pipeline from video to replay, and none reports acc
 \item \textbf{(A) Skeleton-driven key moment.} We align the dataset's 3D skeletons to every clip and freeze at the peak wrist speed of the most active athlete.
 \item \textbf{(B) Facing-aware camera path.} The director picks the side and sweep direction that keep the camera in front of the athlete.
 \item \textbf{(C) Cubic interpolation.} In-between Gaussians follow a Catmull-Rom curve~\cite{catmull1974} instead of a straight line.
-\item \textbf{Experiments and analysis.} An ablation of every director rule, an ablation of D3G's physical priors, an in-between-frame test against real images, an error analysis, and a viewer study.
+\item \textbf{Experiments and analysis.} An ablation of every director rule, an ablation of D3G's physical priors, an in-between-frame test against real images, and an error analysis.
 \end{itemize}
 
 \begin{figure}[t]
@@ -156,7 +154,7 @@ with $\mathbf{p}_i$ the positions at frames $t{-}1,\dots,t{+}2$. It passes exact
 \section{Experiments}
 \label{sec:exp}
 
-\noindent\textbf{Setup.} All six models are ours, trained with the same code and settings on the UVA HPC cluster (A100, A40, A6000 and newer GPUs; about 3 hours per clip, under 1\,GB of GPU memory). All image scores use the held-out views, which training never saw. We ask six questions. \textbf{Q1} Do the models match real views they never saw? \textbf{Q2} Do they capture the athletes' true 3D motion? \textbf{Q3} Does cubic interpolation give better in-between frames? \textbf{Q4} Does the skeleton find the right moment? \textbf{Q5} What does each director rule buy? \textbf{Q6} Which replay do viewers prefer? A last part asks which D3G priors matter.
+\noindent\textbf{Setup.} All six models are ours, trained with the same code and settings on the UVA HPC cluster (A100, A40, A6000 and newer GPUs; about 3 hours per clip, under 1\,GB of GPU memory). All image scores use the held-out views, which training never saw. We ask five questions. \textbf{Q1} Do the models match real views they never saw? \textbf{Q2} Do they capture the athletes' true 3D motion? \textbf{Q3} Does cubic interpolation give better in-between frames? \textbf{Q4} Does the skeleton find the right moment? \textbf{Q5} What does each director rule buy? A last part asks which D3G priors matter.
 
 \subsection{Q1: held-out image quality}
 Our models score 27.0--28.7\dB PSNR and 0.89--0.91 SSIM on held-out views (\cref{tab:q1q2}, \cref{fig:heldout}). On the five clips with released models we are 0.3--1.2\dB lower (0.65\dB on average). We used the same code, settings and seed, so we put most of this gap down to run-to-run noise: in \cref{sec:priors}, four basketball runs that are identical up to frame 0 already differ by 1.2\dB at frame 0. Newer library versions and different GPUs add to it. In every clip PSNR drops by about 1\dB from the well-fit frame 0 and then holds steady.
@@ -327,9 +325,6 @@ naive orbit & 0.61 & 4.10 & 40.0 & 36.3 & 70.2 & 3.31\\
 \vspace{-1em}
 \end{figure}
 
-\subsection{Q6: viewer study}
-Numbers like jerk do not say what a viewer would put on air. We built a web page that shows two replays of the same play side by side, in sync, and asks which is better (A, B, or about the same), with optional reasons: smoother camera, better angle, better moment, sharper athlete, camera stays clear of players. Each viewer sees 8 pairs in a random order with random sides. Each pair sets the full director against one change: the mid-term v6, no smoothing, no clearance, or frame-repeat slow motion, in basketball and tennis. \pending{[Results pending: $N$ viewers, \% preferring the full director per pair, top reasons. To be filled from the study before submission.]}
-
 \subsection{Which physical priors matter?}
 \label{sec:priors}
 D3G's three priors are meant to keep motion physical. We retrained basketball with each one switched off (\cref{tab:priors}). The result is a trade-off. Every prior \emph{lowers} held-out PSNR a little, but makes the 3D motion more correct. Without rigidity, mean track error rises from 9.2 to 13.4\cm, the median almost doubles, and torso error grows five-fold (2.9$\to$14.1\cm): neighbouring Gaussians drift apart while each still looks right in the images. Without rotation or isometry, arm error grows by 4--13\cm. A caution on the PSNR column: the priors only act from frame 1 on, so all four runs are identical at frame 0, yet they already differ by 1.2\dB there. This is run-to-run noise, and the PSNR gaps are of that size. The drop over the clip is similar for all four ($-0.6$ to $-1.0$\dB). So the priors' value shows up in 3D, which only a check against ground-truth motion can see.
@@ -380,7 +375,7 @@ $-$ isometry & 28.59 & 27.68 & 11.91 & 3.77 & 3.00 & 37.8\\
 \vspace{-1em}
 \end{figure*}
 
-\noindent\textbf{Limitations.} (1) A lab dome is small, evenly lit and densely covered; a stadium is none of these, and its cameras would be calibrated by structure-from-motion, not a studio rig. (2) Each clip takes about 3 hours to train; a broadcast needs a replay in seconds, which points to feed-forward models (\cref{sec:related}). (3) Skeletons come from the studio here; in the wild they would come from a pose estimator, with more noise. (4) The key-moment rule only looks in the middle of the clip and confuses lifting with placing. (5) The viewer study is small and drawn from classmates.
+\noindent\textbf{Limitations.} (1) A lab dome is small, evenly lit and densely covered; a stadium is none of these, and its cameras would be calibrated by structure-from-motion, not a studio rig. (2) Each clip takes about 3 hours to train; a broadcast needs a replay in seconds, which points to feed-forward models (\cref{sec:related}). (3) Skeletons come from the studio here; in the wild they would come from a pose estimator, with more noise. (4) The key-moment rule only looks in the middle of the clip and confuses lifting with placing. (5) We judge replay quality with path metrics only; a study with viewers would show whether the gains are visible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
