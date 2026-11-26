@@ -1,0 +1,60 @@
+{
+ "seq": "boxes",
+ "exp": "n27_allcam",
+ "variant": "full",
+ "interp": "cubic",
+ "info": {
+  "freeze": 30.0,
+  "freeze_reason": "skeleton",
+  "motion_az_deg": 118.7,
+  "view_az_deg": 208.7,
+  "sweep_dir": 1,
+  "n_frames": 522,
+  "seconds": 17.4,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.2629345494034003,
+  "fov_min": 47.93763371448028,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "8460/8624",
+  "rf_range": [
+   0.8014628139539061,
+   0.9
+  ],
+  "height_frac_range": [
+   0.35539917697963214,
+   0.6178941143236819
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "skeleton",
+   "facing": true
+  }
+ },
+ "metrics": {
+  "n_frames": 522,
+  "clip_pct": 0.0,
+  "min_clear_R": 0.47701456409807186,
+  "occluded_pct": 0.0,
+  "in_frame": 0.9976314049437063,
+  "cut_pct": 0.0,
+  "at_limit_pct": 0.0,
+  "side_on_cos": 0.4973928125184681,
+  "behind_pct": 0.0,
+  "eye_jerk_med": 0.005486852994009136,
+  "eye_jerk_p95": 0.022975551220647344,
+  "eye_jerk_max": 0.03214851592189159,
+  "rot_jerk_med": 0.00027744716150629456,
+  "rot_jerk_p95": 0.0009218251739496722,
+  "rot_jerk_max": 0.0014529238604699124
+ },
+ "key_frame_skeleton": 30
+}

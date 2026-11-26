@@ -1,0 +1,60 @@
+{
+ "seq": "basketball",
+ "exp": "n27_allcam",
+ "variant": "full",
+ "interp": "cubic",
+ "info": {
+  "freeze": 63.0,
+  "freeze_reason": "skeleton",
+  "motion_az_deg": 116.3,
+  "view_az_deg": 206.3,
+  "sweep_dir": 1,
+  "n_frames": 523,
+  "seconds": 17.433333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 0.949635181724527,
+  "fov_min": 46.71958718583014,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "11610/12272",
+  "rf_range": [
+   0.8042595379392478,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3759076763969051,
+   0.6160807980268312
+  ],
+  "frames_pushed": 73,
+  "frames_raised": 33,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "skeleton",
+   "facing": true
+  }
+ },
+ "metrics": {
+  "n_frames": 523,
+  "clip_pct": 0.0,
+  "min_clear_R": 0.35868035479471766,
+  "occluded_pct": 0.0,
+  "in_frame": 0.6176764607552994,
+  "cut_pct": 100.0,
+  "at_limit_pct": 0.0,
+  "side_on_cos": 0.6454279056420731,
+  "behind_pct": 21.414913957934992,
+  "eye_jerk_med": 0.00808883486030373,
+  "eye_jerk_p95": 0.022007107222442965,
+  "eye_jerk_max": 0.04540659972564878,
+  "rot_jerk_med": 0.00016564572834576463,
+  "rot_jerk_p95": 0.0010567228232563838,
+  "rot_jerk_max": 0.0028147395610551573
+ },
+ "key_frame_skeleton": 63
+}

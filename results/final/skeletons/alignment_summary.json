@@ -1,0 +1,44 @@
+{
+ "basketball": {
+  "raw_start": 4061,
+  "mask_hit_rate": 1.0,
+  "scale_d3g_per_cm": 0.00999999999991339,
+  "cam_rms": 2.7295081928315397e-10,
+  "bodies_mid": 2
+ },
+ "boxes": {
+  "raw_start": 8503,
+  "mask_hit_rate": 1.0,
+  "scale_d3g_per_cm": 0.00999999999991339,
+  "cam_rms": 2.7295081928315397e-10,
+  "bodies_mid": 1
+ },
+ "football": {
+  "raw_start": 2186,
+  "mask_hit_rate": 1.0,
+  "scale_d3g_per_cm": 0.00999999999991339,
+  "cam_rms": 2.7295081928315397e-10,
+  "bodies_mid": 2
+ },
+ "juggle": {
+  "raw_start": 5202,
+  "mask_hit_rate": 1.0,
+  "scale_d3g_per_cm": 0.00999999999991339,
+  "cam_rms": 2.7295081928315397e-10,
+  "bodies_mid": 1
+ },
+ "softball": {
+  "raw_start": 535,
+  "mask_hit_rate": 1.0,
+  "scale_d3g_per_cm": 0.00999999999991339,
+  "cam_rms": 2.7295081928315397e-10,
+  "bodies_mid": 1
+ },
+ "tennis": {
+  "raw_start": 830,
+  "mask_hit_rate": 1.0,
+  "scale_d3g_per_cm": 0.00999999999991339,
+  "cam_rms": 2.7295081928315397e-10,
+  "bodies_mid": 1
+ }
+}

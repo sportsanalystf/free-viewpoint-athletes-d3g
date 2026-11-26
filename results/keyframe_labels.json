@@ -1,0 +1,12 @@
+{
+  "_note": "Hand-labelled key moment per clip (frame index, 0-149), read from media/final/keyframes/sheet_<seq>.jpg (every 3rd frame, held-out camera 0), so labels are +-2 frames. Definition: the decisive instant of the action (release of a throw, contact of a swing, placing of a box). status: proposed -> confirmed once checked by Faizan.",
+  "status": "proposed",
+  "labels": {
+    "basketball": {"frame": 53, "event": "white player releases the pass (ball leaves the hands between frames 51 and 54)"},
+    "boxes": {"frame": 63, "event": "box set down on the stack (arms lower onto the stack, frames 60-66); low confidence, the held-out view is from behind"},
+    "football": {"frame": 66, "event": "white player releases the throw (arm fully extended, ball leaving)"},
+    "juggle": {"frame": null, "event": "continuous juggling, no single key moment; left out of the key-frame error"},
+    "softball": {"frame": 132, "event": "contact zone of the full swing (bat horizontal across the body, frames 129-135)"},
+    "tennis": {"frame": 103, "event": "contact of the big forehand (racket fully forward, frames 102-105)"}
+  }
+}

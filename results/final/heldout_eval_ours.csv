@@ -1,0 +1,7 @@
+seq,model,frames,gaussians,fg_gaussians,psnr,ssim,psnr_min,psnr_max
+basketball,n27_allcam,150,365346,107993,27.03,0.891,26.74,28.01
+boxes,n27_allcam,150,347495,67169,28.7,0.902,28.54,29.29
+football,n27_allcam,150,342746,86825,27.88,0.899,27.38,28.73
+juggle,n27_allcam,150,338877,64312,28.67,0.907,28.38,29.54
+softball,n27_allcam,150,331741,58753,28.43,0.903,28.05,29.12
+tennis,n27_allcam,150,333337,52901,27.78,0.903,27.1,28.72

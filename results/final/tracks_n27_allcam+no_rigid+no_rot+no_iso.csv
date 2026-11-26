@@ -1,0 +1,5 @@
+exp,seq,mean_cm,median_cm,pct_under_5cm,static_mean_cm,n,torso_mean_cm,head_mean_cm,arms_mean_cm,legs_mean_cm
+n27_allcam,basketball,9.22,3.66,66.7,97.27,5662,2.94,2.92,24.9,10.84
+no_rigid,basketball,13.42,6.11,40.4,97.27,5662,14.12,3.24,11.65,26.85
+no_rot,basketball,11.08,4.28,58.6,97.27,5662,3.62,2.84,29.2,14.45
+no_iso,basketball,11.91,3.77,63.0,97.27,5662,3.0,3.02,37.84,10.45

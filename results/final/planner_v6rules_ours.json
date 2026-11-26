@@ -1,0 +1,218 @@
+{
+ "basketball": {
+  "freeze": 59.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 116.3,
+  "view_az_deg": 206.3,
+  "sweep_dir": 1,
+  "n_frames": 523,
+  "seconds": 17.433333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 0.9477079934203104,
+  "fov_min": 46.86995501057166,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "11610/12272",
+  "rf_range": [
+   0.8039082540670849,
+   0.9
+  ],
+  "height_frac_range": [
+   0.37717990288539055,
+   0.6164152237987175
+  ],
+  "frames_pushed": 75,
+  "frames_raised": 43,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "ball",
+   "facing": false
+  }
+ },
+ "boxes": {
+  "freeze": 75.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 75.3,
+  "view_az_deg": 165.3,
+  "sweep_dir": 1,
+  "n_frames": 533,
+  "seconds": 17.766666666666666,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.9389118229307618,
+  "fov_min": 49.02584807501369,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "8460/8624",
+  "rf_range": [
+   0.8023032947049544,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3578781627147595,
+   0.6154031930420591
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "ball",
+   "facing": false
+  }
+ },
+ "football": {
+  "freeze": 119.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 119.7,
+  "view_az_deg": 209.7,
+  "sweep_dir": 1,
+  "n_frames": 598,
+  "seconds": 19.933333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 0.9150307526564629,
+  "fov_min": 46.080307372242856,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "9211/9616",
+  "rf_range": [
+   0.8033605185289018,
+   0.9
+  ],
+  "height_frac_range": [
+   0.36074425489334433,
+   0.6128517783861461
+  ],
+  "frames_pushed": 44,
+  "frames_raised": 21,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "ball",
+   "facing": false
+  }
+ },
+ "juggle": {
+  "freeze": 50.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": -10.1,
+  "view_az_deg": 79.9,
+  "sweep_dir": 1,
+  "n_frames": 523,
+  "seconds": 17.433333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.7426862671016148,
+  "fov_min": 55.04638565861613,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "8317/8439",
+  "rf_range": [
+   0.801753242444727,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3562849807172493,
+   0.6170228846988065
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "ball",
+   "facing": false
+  }
+ },
+ "softball": {
+  "freeze": 81.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 108.5,
+  "view_az_deg": 198.5,
+  "sweep_dir": 1,
+  "n_frames": 537,
+  "seconds": 17.9,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.6526519226550374,
+  "fov_min": 56.9576570920281,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "8241/8275",
+  "rf_range": [
+   0.8024833271580056,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3583855238897578,
+   0.6149987687179983
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "ball",
+   "facing": false
+  }
+ },
+ "tennis": {
+  "freeze": 50.0,
+  "freeze_reason": "ball apex",
+  "motion_az_deg": 92.8,
+  "view_az_deg": 182.8,
+  "sweep_dir": 1,
+  "n_frames": 523,
+  "seconds": 17.433333333333334,
+  "radius": 2.6475806913596607,
+  "clear": 0.9266532419758812,
+  "min_clearance": 1.6763472279849225,
+  "fov_min": 55.230938825697145,
+  "fov_max": 64.00000000000001,
+  "ball_found": true,
+  "player_pts_kept": "7940/8018",
+  "rf_range": [
+   0.801753242444727,
+   0.9
+  ],
+  "height_frac_range": [
+   0.3562849807172493,
+   0.6170228846988065
+  ],
+  "frames_pushed": 0,
+  "frames_raised": 0,
+  "opts": {
+   "floater": true,
+   "clearance": true,
+   "occlusion": true,
+   "auto_fov": true,
+   "smooth": "double",
+   "view": "side",
+   "key": "ball",
+   "facing": false
+  }
+ }
+}
